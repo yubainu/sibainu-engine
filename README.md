@@ -20,7 +20,7 @@ The engine statistically evaluates "trajectory distortion" within the model's in
 To ensure verification transparency, the following resources are provided:
 
 * **`sibainu_engine_lite.py`**: A **demo/trial version** with analysis axes limited to "Anchor Drift."
-* **`raw_logs/`**: Contains unprocessed raw log data generated during performance validation.
+* **`raw_logs.csv`**: Contains unprocessed raw log data generated during performance validation.
 
 ### How to Use the Demo Code
 #### 1. Environment Setup
