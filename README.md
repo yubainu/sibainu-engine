@@ -19,20 +19,26 @@ The engine statistically evaluates "trajectory distortion" within the model's in
 ## 2. Public Resources
 To ensure verification transparency, the following resources are provided:
 
-* **`sibainu_engine_lite.py`**: A **demo/trial version** with analysis axes limited to "Anchor Drift."
-* **`raw_logs.csv`**: Contains unprocessed raw log data generated during performance validation.
+* **`sibainu_engine_lite.py`**:
+    * A **demo/trial version** with analysis axes limited to "Anchor Drift."
+    * Allows for the verification of the fundamental detection logic.
+* **`evaluate.py`**:
+    * A verification script to automatically measure the performance (Precision/Recall, etc.) of this engine.
+* **`raw_logs.csv`**:
+    * Contains the raw verification data (IDs, true labels, predicted labels, and drift scores) generated during performance validation on an RTX 3050 (4GB).
 
 ### How to Use the Demo Code
-#### 1. Environment Setup
-##### Requires torch and transformers
-```bash
-pip install torch transformers
-```
+This code is designed to run in a Python 3.x environment.
 
-#### 2. Execution  
-```bash
-python sibainu_engine_lite.py
-```
+1.  **Execution**: Run the following command to see the engine in action:
+    ```bash
+    python sibainu_engine_lite.py
+    ```
+2.  **Performance Evaluation**: To reproduce the benchmark results (ROC-AUC 0.8995), run:
+    ```bash
+    python evaluate.py
+    ```
+    * *Note: The scripts will reference the data in `raw_logs.csv`.*
 
 ## 3. Performance Evaluation (Internal Benchmark)
 
