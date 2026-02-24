@@ -56,7 +56,6 @@ This code is designed to run in a Python 3.x environment.
 | **FSR** | **7.01%** | False Stop Rate. Minimizes interruption of valid responses. |
 
 <img width="2552" height="1638" alt="score_distribution_fixed" src="https://github.com/user-attachments/assets/359768e3-2107-49dc-817c-642c8510876c" />
-##### SIB-ENGINE Score Distribution (Normal vs. Hallucination)
 
 Observation: Normal generations (Blue) are densely clustered near a drift score of 0. In contrast, hallucinations (Red) exhibit a distinct shift toward higher values, typically above 1.0.
 
