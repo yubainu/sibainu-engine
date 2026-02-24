@@ -56,6 +56,15 @@ This code is designed to run in a Python 3.x environment.
 | **FSR** | **7.01%** | False Stop Rate. Minimizes interruption of valid responses. |
 
 <img width="2552" height="1638" alt="score_distribution_fixed" src="https://github.com/user-attachments/assets/359768e3-2107-49dc-817c-642c8510876c" />
+##### SIB-ENGINE Score Distribution (Normal vs. Hallucination)
+
+Observation: Normal generations (Blue) are densely clustered near a drift score of 0. In contrast, hallucinations (Red) exhibit a distinct shift toward higher values, typically above 1.0.
+
+Methodology: To ensure visual clarity and focus on the primary data distribution, the x-axis has been optimized by clipping the top 1% of extreme outliers (e.g., scores up to 1200).
+
+Fact: This separation demonstrates that the geometric drift captured by SIB-ENGINE serves as a statistically significant indicator for structural collapses in latent space before they manifest as textual hallucinations.
+
+
 <img width="800" height="800" alt="roc_curve" src="https://github.com/user-attachments/assets/b49cde77-d79c-4bfc-b3b8-535d63845dac" />
 
 
