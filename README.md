@@ -55,6 +55,10 @@ This code is designed to run in a Python 3.x environment.
 | **Recall** | **53.89%** | Captures approx. half of the cases. |
 | **FSR** | **7.01%** | False Stop Rate. Minimizes interruption of valid responses. |
 
+<img width="2552" height="1638" alt="score_distribution_fixed" src="https://github.com/user-attachments/assets/359768e3-2107-49dc-817c-642c8510876c" />
+<img width="800" height="800" alt="roc_curve" src="https://github.com/user-attachments/assets/b49cde77-d79c-4bfc-b3b8-535d63845dac" />
+
+
 ## 4. Verification Case Studies
 Based on the engine protocol, logical deviations were successfully neutralized in the following cases. For details, refer to the [Demonstration Video](https://youtu.be/H1_zDC0SXQ8).
 
