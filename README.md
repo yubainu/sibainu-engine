@@ -4,6 +4,8 @@
 ![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
 ![Tested on](https://img.shields.io/badge/Hardware-RTX%203050%20(4GB)-green)
 
+**TL;DR**: A 1% overhead geometric auditor that detects 54% of hallucinations with 88% precision on an RTX 3050.
+
 This project is a demonstration of a lightweight auditing layer designed to detect and suppress hallucinations (false outputs) in Transformer-based LLMs in real-time by observing geometric fluctuations in Hidden States during inference.
 
 ## 1. Geometric Detection Overview
@@ -13,6 +15,7 @@ The engine statistically evaluates "trajectory distortion" within the model's in
 * **Real-time Intervention**: Triggers an immediate suppression or control of the generation process the moment the Drift Score exceeds the **preset threshold**.
 * **Low Computational Cost**: 
     > Adds only $O(d)$ vector distance calculations per token. This ensures minimal impact on inference throughput, even in local environments such as the RTX 3050 (4GB).
+    > Tested on consumer-grade hardware (RTX 3050 4GB). No H100s required for auditing.
 
 
 
@@ -41,6 +44,8 @@ This code is designed to run in a Python 3.x environment.
     * *Note: The scripts will reference the data in `raw_logs.csv`.*
 
 ## 3. Performance Evaluation (Internal Benchmark)
+
+hese metrics are achieved by the full 4-axis engine. The Lite version (1-axis) provided here is for fundamental logic verification.
 
 ### Validation Process
 1.  **Calibration**: Determined the optimal threshold to maximize F1-Score using a validation set of 200 samples.
