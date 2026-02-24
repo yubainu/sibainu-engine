@@ -100,6 +100,6 @@ This release is for technical demonstration purposes only. Commercial use, repro
 
 * **Developer**: yubainu
 * **YouTube**: [Demonstration Video](https://youtu.be/H1_zDC0SXQ8)
-* **Contact**: yubainu98@gmail.com
+* **Contact**: yubainu98(at)gmail.com
 
 **Hardware Tested**: NVIDIA GeForce RTX 3050 (4GB)
