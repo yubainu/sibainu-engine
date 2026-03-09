@@ -45,7 +45,8 @@ hese metrics are achieved by the full 8-axis engine. The Lite version (1-axis) p
 | Metric | Value (v6.4) | Previous (v6.1) | Note |
 | :--- | :--- | :--- | :--- |
 | **ROC-AUC** | **0.9176** | 0.8995 | Significant precision improvement. |
-| **Recall @ 5% FSR** | **59.70%** | 48.2% (est) | Captures approx. 60% under strict constraints. |
+| **Recall @ 5% FSR** | **59.70%** | 48.2% (est) | Captures approx. 60% under strict constraints. (Threshold: 3.6510)|
+| **Recall @ 10% FSR** | **74.75%** | 62.5% (est) | Captures approx. 60% under strict constraints. (Threshold: 2.9577)|
 | **Precision** | **91.2%** | 88.5% | Minimizes unnecessary interventions. |
 | **Latency** | **< 1ms** | < 1ms | Near-zero overhead on RTX 3050. |
 
