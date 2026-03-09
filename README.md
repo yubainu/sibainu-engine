@@ -1,34 +1,26 @@
-# Sibainu Engine v6.1-Gamma (Technical Preview)
+# Sibainu Engine v6.4-Delta (Technical Validation)
 
-![Project Status](https://img.shields.io/badge/Status-Technical%20Preview-blue)
+![Project Status](https://img.shields.io/badge/Status-Technical%20Validation-success)
 ![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
 ![Tested on](https://img.shields.io/badge/Hardware-RTX%203050%20(4GB)-green)
 
-**TL;DR**: A 1% overhead geometric auditor that detects 54% of hallucinations with 88% precision on an RTX 3050.
+**TL;DR**: A hidden-state based pre-emptive auditor achieving **0.9176 ROC-AUC** on an RTX 3050 (4GB). It detects ~60% of hallucinations at a 5% False Signal Rate (FSR).
 
-This project is a demonstration of a lightweight auditing layer designed to detect and suppress hallucinations (false outputs) in Transformer-based LLMs in real-time by observing geometric fluctuations in Hidden States during inference.
+## 1. Technical Overview
+This project demonstrates a lightweight auditing layer that monitors internal **Hidden State Dynamics** to detect hallucinations *before* token generation.
 
-## 1. Geometric Detection Overview
-The engine statistically evaluates "trajectory distortion" within the model's internal vector space rather than performing semantic content analysis.
+* **Multi-Axis Analysis**: Beyond "Anchor Drift," v6.4 integrates **Layer Dissonance**—the structural inconsistency between transformer layers during anomalous inference.
+* **Pre-emptive Detection**: Identifies the "collapse of latent trajectory" prior to the first token being sampled.
+* **Theoretical Generalizability**: Validated on **Gemma-2b**. The geometric detection logic is theoretically applicable to any Transformer-based architecture.
+* **Ultra-Low Resource**: Adds negligible latency ($O(d)$ per token). Developed and validated on consumer-grade hardware (**RTX 3050 4GB**).
 
-* **Geometric Analysis**: Measures the **"Anchor Drift"**—how the Hidden State of each generated token deviates from the "semantic anchors" defined by the prompt.
-* **Real-time Intervention**: Triggers an immediate suppression or control of the generation process the moment the Drift Score exceeds the **preset threshold**.
-* **Low Computational Cost**: 
-    > Adds only $O(d)$ vector distance calculations per token. This ensures minimal impact on inference throughput, even in local environments such as the RTX 3050 (4GB).
-    > Tested on consumer-grade hardware (RTX 3050 4GB). No H100s required for auditing.
-
-
-
-## 2. Public Resources
-To ensure verification transparency, the following resources are provided:
-
+## 2. Validation Resources
+* **`evaluation_results_v6.4.csv`**:
+    * Final score data from validation.
+* **`visualizations/`**:
+    * **`ROC_Curve_v6.4.png`**: Primary evidence of **0.9176 AUC**.
 * **`sibainu_engine_lite.py`**:
-    * A **demo/trial version** with analysis axes limited to "Anchor Drift."
-    * Allows for the verification of the fundamental detection logic.
-* **`evaluate.py`**:
-    * A verification script to automatically measure the performance (Precision/Recall, etc.) of this engine.
-* **`raw_logs.csv`**:
-    * Contains the raw verification data (IDs, true labels, predicted labels, and drift scores) generated during performance validation on an RTX 3050 (4GB).
+    * Demo script for verifying fundamental detection logic.
 
 ### How to Use the Demo Code
 This code is designed to run in a Python 3.x environment.
@@ -43,63 +35,34 @@ This code is designed to run in a Python 3.x environment.
     ```
     * *Note: The scripts will reference the data in `raw_logs.csv`.*
 
-## 3. Performance Evaluation (Internal Benchmark)
+#### Performance Evaluation (Internal Benchmark)
 
-hese metrics are achieved by the full 4-axis engine. The Lite version (1-axis) provided here is for fundamental logic verification.
-
-### Validation Process
-1.  **Calibration**: Determined the optimal threshold to maximize F1-Score using a validation set of 200 samples.
-2.  **Blind Test**: Conducted independent testing on the remaining 800 samples using the fixed threshold.
-3.  **Data Source**: Evaluations are based strictly on **actual Hidden State measurements** on RTX 3050, not theoretical predictions.
-
-### Evaluation Metrics
-| Metric | Value | Technical Characteristics |
-| :--- | :--- | :--- |
-| **ROC-AUC** | **0.8995** | Confirmed strong correlation between geometric fluctuations and hallucinations. |
-| **Precision** | **88.52%** | High precision. Conservative design minimizing false positives. |
-| **Recall** | **53.89%** | Captures approx. half of the cases. |
-| **FSR** | **7.01%** | False Stop Rate. Minimizes interruption of valid responses. |
-
-<img width="2552" height="1638" alt="score_distribution_fixed" src="https://github.com/user-attachments/assets/359768e3-2107-49dc-817c-642c8510876c" />
-
-Observation: Normal generations (Blue) are densely clustered near a drift score of 0. In contrast, hallucinations (Red) exhibit a distinct shift toward higher values, typically above 1.0.
-
-Methodology: To ensure visual clarity and focus on the primary data distribution, the x-axis has been optimized by clipping the top 1% of extreme outliers (e.g., scores up to 1200).
-
-Fact: This separation demonstrates that the geometric drift captured by SIB-ENGINE serves as a statistically significant indicator for structural collapses in latent space before they manifest as textual hallucinations.
+hese metrics are achieved by the full 8-axis engine. The Lite version (1-axis) provided here is for fundamental logic verification.
 
 
-<img width="800" height="800" alt="roc_curve" src="https://github.com/user-attachments/assets/b49cde77-d79c-4bfc-b3b8-535d63845dac" />
+## 3. Benchmarks (Actual Measurements)
 
+| Metric | Value (v6.4) | Previous (v6.1) | Note |
+| :--- | :--- | :--- | :--- |
+| **ROC-AUC** | **0.9176** | 0.8995 | Significant precision improvement. |
+| **Recall @ 5% FSR** | **59.70%** | 48.2% (est) | Captures approx. 60% under strict constraints. |
+| **Precision** | **91.2%** | 88.5% | Minimizes unnecessary interventions. |
+| **Latency** | **< 1ms** | < 1ms | Near-zero overhead on RTX 3050. |
 
-## 4. Verification Case Studies
-Based on the engine protocol, logical deviations were successfully neutralized in the following cases. For details, refer to the [Demonstration Video](https://youtu.be/H1_zDC0SXQ8).
+> [!NOTE]
+> **Separation Efficiency**: At a 5.0% FSR (False Signal Rate), the engine captures **59.7%** of all hallucinations in the HaluEval-QA dataset.
 
-> [!IMPORTANT]
-> **Neutralized Examples:**
-> 1. **Non-existent Entity Assertion**: e.g., "The Capital of Mars."
-> 2. **Fabricated Authority Attribution**: e.g., Using fake names (Dr. George T. Hems).
-> 3. **Chronological Anachronism**: e.g., "Silicon Valley" in a 1930s setting.
+## 4. Methodology: Layer Dissonance
+The v6.4 engine focuses on **"Latent Trajectory Collapse."** When a model begins to hallucinate, the vector transformations between the middle and final layers exhibit a specific type of geometric turbulence (Dissonance) that is statistically absent during factual recall.
 
-## 5. Implementation Characteristics
-* **External Auditing Layer**: Can be integrated as an external module into existing LLM pipelines.
-* **Black-box Agnostic**: Detects anomalies based solely on the geometric behavior of vector data without accessing the LLM's internal weights or hidden logic.
-* **Diagnostic Logging**: When a hallucination is detected, the engine outputs the score and the **reason for detection (Reason)** in the logs for post-analysis.
-* **Dynamic Resampling**: Lowers the sampling temperature upon threshold breach to trigger deterministic regeneration.
+## 5. Roadmap
+- [ ] **Cross-Model Validation**: Verifying theoretical generalizability across different LLMs.
+- [ ] **Training Efficiency**: Applying the theory to filter training data and reduce computational resource costs.
 
-## 6. Roadmap
-- [ ] **Multidimensional Integration**: Incorporating Layer Dissonance to aim for 80% Recall.
-- [ ] **Geometric Data Cleansing**: Applying detection logic to pre-processing to improve "intellectual purity."
-- [ ] **Optimization of Learning Process**: Aiming for a 15% reduction in training resource costs through dynamic gradient control.
-
-## 7. License / Contact
+## 6. License / Contact
 **License: All Rights Reserved (Proprietary)**
 **(C) 2026 sibainu.**
-
-This release is for technical demonstration purposes only. Commercial use, reproduction, or redistribution of the code and algorithms without permission is prohibited.
-
 * **Developer**: yubainu
 * **YouTube**: [Demonstration Video](https://youtu.be/H1_zDC0SXQ8)
 * **Contact**: yubainu98(at)gmail.com
-
-**Hardware Tested**: NVIDIA GeForce RTX 3050 (4GB)
+* **NDA**: Available for technical briefs upon request.
