@@ -12,6 +12,7 @@
 ## 1. Technical Overview
 This project demonstrates a lightweight auditing layer that monitors internal **Hidden State Dynamics** to detect hallucinations *before* token generation.
 
+* **No Training Required**: Works out-of-the-box with frozen weights. No fine-tuning or prior training on hallucination datasets is necessary.
 * **Multi-Axis Analysis**: Beyond "Anchor Drift," v6.4 integrates **Layer Dissonance**—the structural inconsistency between transformer layers during anomalous inference.
 * **Pre-emptive Detection**: Identifies the "collapse of latent trajectory" prior to the first token being sampled.
 * **Theoretical Generalizability**: Validated on **Gemma-2b**. The geometric detection logic is theoretically applicable to any Transformer-based architecture.
