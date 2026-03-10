@@ -23,26 +23,51 @@ This project demonstrates a lightweight auditing layer that monitors internal **
     * Final score data from validation.
 * **`visualizations/`**:
     * **`ROC_Curve_v6.4.png`**: Primary evidence of **0.9176 AUC**.
-* **`sibainu_engine_lite.py`**:
-    * Demo script for verifying fundamental detection logic.
 
-### How to Use the Demo Code
-This code is designed to run in a Python 3.x environment.
+## 🛠 How to Use the Demo Code
 
-1.  **Execution**: Run the following command to see the engine in action:
-    ```bash
-    python sibainu_engine_lite.py
-    ```
-2.  **Performance Evaluation**: To reproduce the benchmark results (ROC-AUC 0.8995), run:
-    ```bash
-    python evaluate.py
-    ```
-    * *Note: The scripts will reference the data in `raw_logs.csv`.*
+### 🔐 Technical Access & Verification
 
-#### Performance Evaluation (Internal Benchmark)
+The Sibainu Engine API is currently hosted in a **Private Space** to protect the proprietary **Internal Consistency Metrics (ICM)** logic and prevent unauthorized scraping. 
 
-hese metrics are achieved by the full 8-axis engine. The Lite version (1-axis) provided here is for fundamental logic verification.
+If you are a technical auditor, AI researcher, or represent an organization interested in evaluating the engine's performance (confirming the **60% Recall at 5% FSR** target), please follow the steps below to request a temporary verification token:
 
+1. **Contact:** Reach out to **yubainu98(at)gmail.com** with your professional affiliation.
+2. **Purpose:** Briefly state the scope of your verification (e.g., "HaluEval large-scale benchmarking").
+3. **Issuance:** A **read-only access token** will be provided for a limited duration to facilitate your independent audit using the provided scripts.
+
+### 🖥 Environment Setup
+A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 4-bit (NF4) quantized model.
+
+`pip install torch transformers datasets bitsandbytes accelerate pandas requests`
+
+### 🔑 Obtain Access Token
+The Sibainu Engine API is hosted in a **Private Space**. To perform an audit, you must authenticate your requests.
+
+1. Open `demo6.4.py` or `Sibainu_HaluEval_NF4_Scanner.py`.
+2. Locate the following configuration line:
+   `HF_TOKEN = ""` 
+3. **Insert your provided token between the quotes.** (e.g., `HF_TOKEN = "hf_..."`)
+
+
+
+### 🚀 Running the Real-time Demo (`demo6.4.py`)
+This script executes a 20-token inference with live **Internal Consistency Metrics (ICM)** monitoring.
+
+`python demo6.4.py`
+
+* **Input:** Enter any technical or factual question when prompted.
+* **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
+
+### 📊 Running the HaluEval Benchmark (`Sibainu_HaluEval_NF4_Scanner.py`)
+This script automates the validation process using the official **HaluEval (QA)** dataset from Hugging Face.
+
+`python Sibainu_HaluEval_NF4_Scanner.py`
+
+* **Instructions:**
+  1. Enter the **Start ID** (e.g., `0`) to pull from the dataset.
+  2. Enter the **Number of Samples** (e.g., `10`) to scan.
+* **Result:** A CSV file (e.g., `halueval_results_0_to_9.csv`) will be generated. This file contains raw ICM scores for both "Right" and "Hallucinated" pairs, allowing for immediate ROC-AUC calculation.
 
 ## 3. Benchmarks (Actual Measurements)
 
