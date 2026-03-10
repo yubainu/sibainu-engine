@@ -35,6 +35,7 @@ If you are a technical auditor, AI researcher, or represent an organization inte
 1. **Contact:** Reach out to **yubainu98(at)gmail.com** with your professional affiliation.
 2. **Purpose:** Briefly state the scope of your verification (e.g., "HaluEval large-scale benchmarking").
 3. **Issuance:** A **read-only access token** will be provided for a limited duration to facilitate your independent audit using the provided scripts.
+(Please allow up to 24 hours for a response due to time zone differences.)
 
 ### 🖥 Environment Setup
 A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 4-bit (NF4) quantized model.
