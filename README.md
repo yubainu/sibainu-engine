@@ -86,11 +86,15 @@ This script automates the validation process using the official **HaluEval (QA)*
 ## 4. Methodology: Layer Dissonance
 The v6.4 engine focuses on **"Latent Trajectory Collapse."** When a model begins to hallucinate, the vector transformations between the middle and final layers exhibit a specific type of geometric turbulence (Dissonance) that is statistically absent during factual recall.
 
-## 5. Roadmap
+## 4. Predictive Risk Assessment for Unconstrained Outputs
+
+Omega Engine identifies unauthorized content generation as a primary precursor to hallucinations. When a model produces information beyond the scope of the initial query (e.g., self-generated follow-up questions), the system captures the resulting increase in entropy and latent dissonance. Such "runaway" generation is flagged as high-risk, providing an early warning before the model commits to a definitive factual error.
+
+## 6. Roadmap
 - [ ] **Cross-Model Validation**: Verifying theoretical generalizability across different LLMs.
 - [ ] **Training Efficiency**: Applying the theory to filter training data and reduce computational resource costs.
 
-## 6. License / Contact
+## 7. License / Contact
 **License: All Rights Reserved (Proprietary)**
 **(C) 2026 sibainu.**
 * **Developer**: yubainu
