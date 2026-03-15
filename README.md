@@ -80,6 +80,11 @@ This script automates the validation process using the official **HaluEval (QA)*
 * **Result:** A CSV file (e.g., `halueval_results_0_to_9.csv`) will be generated. This file contains raw ICM scores for both "Right" and "Hallucinated" pairs, allowing for immediate ROC-AUC calculation.
 
 ## 3. Benchmarks (Actual Measurements)
+### Dataset
+* **Dataset Used**: [HaluEval-QA dataset](https://github.com/bjascob/HaluEval)
+  * A large-scale collection of generated and human-annotated hallucinated samples for evaluating LLMs.
+
+### 1.gemma2B(N=2000)
 
 | Metric | Value (v6.4) | Previous (v6.1) | Note |
 | :--- | :--- | :--- | :--- |
@@ -88,6 +93,20 @@ This script automates the validation process using the official **HaluEval (QA)*
 | **Recall @ 10% FSR** | **74.75%** | 62.5% (est) | Captures approx. 75% under strict constraints. (Threshold: 2.9577)|
 | **Precision** | **91.2%** | 88.5% | Minimizes unnecessary interventions. |
 | **Latency** | **< 1ms** | < 1ms | Near-zero overhead on RTX 3050. |
+
+### 2.Llama-3.2-1B(N=2000)
+| Metric | Value |
+| :--- | :--- |
+| ROC-AUC | 0.9217 |
+| Recall @5% FSR | 0.6375 |
+| Recall @10% FSR | 0.7800 |
+
+### 3.Mistral7B(N=250)
+| Metric | Value |
+| :--- | :--- |
+| ROC-AUC | 0.9035 |
+| Recall @5% FSR | 0.5960 |
+| Recall @10% FSR | 0.7200 |
 
 > [!NOTE]
 > **Separation Efficiency**: At a 5.0% FSR (False Signal Rate), the engine captures **59.7%** of all hallucinations in the HaluEval-QA dataset.
