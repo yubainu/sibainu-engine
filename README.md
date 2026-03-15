@@ -6,7 +6,7 @@
 
 **TL;DR**: A hidden-state based pre-emptive auditor achieving **0.9176 ROC-AUC** on an RTX 3050 (4GB). It detects ~60% of hallucinations at a 5% False Signal Rate (FSR).
 
-
+![ROC-AUC Curve](https://github.com/yubainu/sibainu-engine/raw/main/ROC-AUC(gemma2b%2Cmistral7b%2Cllama1b).png)
 
 
 ## 1. Technical Overview
