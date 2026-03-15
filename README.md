@@ -6,8 +6,6 @@
 
 **TL;DR**: A hidden-state based pre-emptive auditor achieving **0.9176 ROC-AUC** on an RTX 3050 (4GB). It detects ~60% of hallucinations at a 5% False Signal Rate (FSR).
 
-<img width="800" height="600" alt="ROC_Curve_v6 4" src="https://github.com/user-attachments/assets/1139e9d1-9ecc-4b19-a294-5b11ce721f0e" />
-
 
 ## 1. Technical Overview
 This project demonstrates a lightweight auditing layer that monitors internal **Hidden State Dynamics** to detect hallucinations *before* token generation.
