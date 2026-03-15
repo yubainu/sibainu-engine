@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
 ![Tested on](https://img.shields.io/badge/Hardware-RTX%203050%20(4GB)-green)
 
-**TL;DR**: A hidden-state based pre-emptive auditor achieving **0.9176 ROC-AUC** on an RTX 3050 (4GB). It detects ~60% of hallucinations at a 5% False Signal Rate (FSR).
+**TL;DR**: An ultra-lightweight, hidden-state-based pre-emptive auditor achieving over 0.9 ROC-AUC across three LLM models (Gemma-2B, Llama-3.2-1B, and Mistral-7B) on a single RTX 3050 (4GB). It consistently detects approximately 60% of hallucinations at a 5% False Signal Rate (FSR) across all tested architectures.
 
 ![ROC-AUC Curve](https://github.com/yubainu/sibainu-engine/raw/main/ROC-AUC(gemma2b%2Cmistral7b%2Cllama1b).png)
 
