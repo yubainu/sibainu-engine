@@ -60,6 +60,15 @@ This script executes a 20-token inference with live **Internal Consistency Metri
 * **Input:** Enter any technical or factual question when prompted.
 * **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
 
+### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
+
+This script implements a **Closed-Loop Safety Control** that automatically triggers a re-generation (Recovery Mode) when the engine detects a physical neural anomaly.
+
+* **Input**: Enter a factual or complex question (e.g., "What is the tallest mountain in Japan?").
+* **Real-time Monitoring**: The client streams tokens while the remote API issues `CONTINUE` or `RECOVER` commands based on the live FSR5 score.
+* **Automatic Recovery**: If the threshold of **3.6510** is breached, the agent immediately aborts the corrupted session and re-runs the inference using **Deterministic Greedy Search** to ensure factual stability.
+* **Output**: A final, verified response is delivered after the autonomous correction process.
+
 ### 📊 Running the HaluEval Benchmark (`Sibainu_HaluEval_NF4_Scanner.py`)
 This script automates the validation process using the official **HaluEval (QA)** dataset from Hugging Face.
 
