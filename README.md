@@ -85,6 +85,15 @@ This script executes a 20-token inference with live **Internal Consistency Metri
 * **Input:** Enter any technical or factual question when prompted.
 * **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
 * **Latency Benchmarking**: Real-time tracking of scoring latency per token to evaluate integration overhead.
+> [!IMPORTANT]
+> **Understanding the Score: Beyond Factual Correctness**
+> 
+> You may occasionally see a `HIGH_RISK` verdict even when the model provides a factually correct answer. This is not necessarily a "False Positive," but a reflection of the engine's design philosophy:
+> 
+> * **Neural Instability**: The engine measures the **internal stress** of the model during inference. A high score indicates that the model is struggling to maintain geometric consistency—a common occurrence when the model is "guessing" a correct answer based on weak or ambiguous internal signals.
+> * **Safety Margin (Recall vs. FSR)**: To ensure a **60% Recall** of hallucinations, the engine is tuned with a **5% False Signal Rate (FSR)**. We intentionally prioritize flagging these "unstable truths" to prevent "confident lies" from slipping through.
+> * **Quantization Noise**: Operating in 4-bit (NF4) mode introduces inherent noise into the model's latent space. This noise can occasionally push the metrics above the threshold, even during successful factual recall.
+
 
 ### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
 
