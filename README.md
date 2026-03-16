@@ -45,7 +45,7 @@ A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 
 ### 🔑 Obtain Access Token
 The Sibainu Engine API is hosted in a **Private Space**. To perform an audit, you must authenticate your requests.
 
-1. Open `demo6.4.py` or `Sibainu_HaluEval_NF4_Scanner.py`.
+1. Open `demo6.4.py` or `recovery_agent_gemma.py`or `Sibainu_HaluEval_NF4_Scanner.py`.
 2. Locate the following configuration line:
    `HF_TOKEN = ""` 
 3. **Insert your provided token between the quotes.** (e.g., `HF_TOKEN = "hf_..."`)
