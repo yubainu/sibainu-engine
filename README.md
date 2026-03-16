@@ -84,6 +84,7 @@ This script executes a 20-token inference with live **Internal Consistency Metri
 
 * **Input:** Enter any technical or factual question when prompted.
 * **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
+* **Latency Benchmarking**: Real-time tracking of scoring latency per token to evaluate integration overhead.
 
 ### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
 
