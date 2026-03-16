@@ -18,6 +18,31 @@ This project demonstrates a lightweight auditing layer that monitors internal **
 * **Theoretical Generalizability**: Validated on **Gemma-2b**. The geometric detection logic is theoretically applicable to any Transformer-based architecture.
 * **Ultra-Low Resource**: Adds negligible latency ($O(d)$ per token). Developed and validated on consumer-grade hardware (**RTX 3050 4GB**).
 
+### Performance Analysis
+
+The Omega Engine is designed for ultra-low latency real-time auditing of LLM generation processes. The following benchmarks distinguish between the **intrinsic algorithmic latency (Core)** and the **total system response time (API)**.
+
+#### 1. Latency Breakdown (Local Environment)
+* **Environment**: Windows 11 / Python 3.12 / NVIDIA GeForce RTX 3050 (4GB)
+* **Target Model**: `google/gemma-2b` (4-bit quantization)
+
+| Measurement Scope | Latency | Technical Context |
+| :--- | :--- | :--- |
+| **Auditing Core (NumPy)** | **< 1.0 ms** | Pure mathematical vectorized computation. |
+| **Data I/O & Validation** | **~12.0 ms** | Pydantic validation and List-to-Array conversion. |
+| **End-to-End API (Local)** | **15.0 - 25.0 ms** | Total response time including FastAPI overhead. |
+
+
+
+#### 2. Technical Insight: The "15ms" Reality
+The observed latency of 15ms–20ms is primarily due to **data interface friction** rather than algorithmic complexity.
+
+* **Zero-Bottleneck Design**: The core computation finishes in under 1ms, which is significantly faster than typical LLM token generation speeds (30–70ms/token). This ensures that the auditing process never becomes a bottleneck for the generation pipeline.
+* **Scalability**: Most of the current delay stems from Python's serialization (JSON/List to NumPy conversion). In a production-grade environment (e.g., C++ implementation or using Shared Memory), this overhead can be eliminated, bringing total latency close to the <1ms theoretical limit.
+
+#### 3. Stability & Constant-Time Execution
+By leveraging vectorized operations, the auditing time remains constant regardless of the sequence length. This guarantees stable, real-time performance even during long-form text generation.
+
 ## 2. Validation Resources
 * **`evaluation_results_v6.4.csv`**:
     * Final score data from validation.
