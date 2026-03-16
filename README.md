@@ -38,7 +38,7 @@ The Omega Engine is designed for ultra-low latency real-time auditing of LLM gen
 The observed latency of 15ms–20ms is primarily due to **data interface friction** rather than algorithmic complexity.
 
 * **Zero-Bottleneck Design**: The core computation finishes in under 1ms, which is significantly faster than typical LLM token generation speeds (30–70ms/token). This ensures that the auditing process never becomes a bottleneck for the generation pipeline.
-* **Scalability**: Most of the current delay stems from Python's serialization (JSON/List to NumPy conversion). In a production-grade environment (e.g., C++ implementation or using Shared Memory), this overhead can be eliminated, bringing total latency close to the <1ms theoretical limit.
+* **Scalability**: Most of the current delay stems from Python's serialization (JSON/List to NumPy conversion). **Theoretically**, this overhead can be eliminated in a production-grade environment (e.g., C++ implementation or using Shared Memory), bringing total latency close to the <1ms algorithmic limit.
 
 #### 3. Stability & Constant-Time Execution
 By leveraging vectorized operations, the auditing time remains constant regardless of the sequence length. This guarantees stable, real-time performance even during long-form text generation.
