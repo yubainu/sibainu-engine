@@ -1,4 +1,4 @@
-import torch, requests, numpy as np, sys, uuid, os, gc
+import torch, requests, numpy as np, sys, uuid, os, gc, time
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -63,16 +63,19 @@ def run_proc(q):
                 p_k.extend(o.logits[0, -1, :].to(torch.float32).cpu().numpy().tolist())
                 
                 cur_s = 0.0
+                api_lat = 0.0
                 try:
-                    r_raw = requests.post(A_U, json={"packet": p_k, "rst": i==0, "token": TKN, "is_b": True}, headers=h, timeout=10)
-                    cur_s = r_raw.json().get("score", 0.0)
+                    r_raw = requests.post(A_U, json={"packet": p_k, "rst": i==0, "token": TKN, "is_b": True}, headers=h, timeout=15)
+                    res_j = r_raw.json()
+                    cur_s = res_j.get("score", 0.0)
+                    api_lat = res_j.get("latency_ms", 0.0)
                 except:
                     pass
                 
                 if cur_s > m_s: m_s = cur_s
                 
                 t_s = tk.decode(n_t[0])
-                print(f"Token {i} [{t_s}]: Score = {cur_s:.4f}")
+                print(f"Token {i} [{t_s}]: Score = {cur_s:.4f} | Scoring Latency: {api_lat:.2f}ms")
                 
                 i_d = torch.cat([i_d, n_t], dim=-1)
                 if n_t.item() == tk.eos_token_id: break
