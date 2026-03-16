@@ -3,6 +3,10 @@
 ![Project Status](https://img.shields.io/badge/Status-Technical%20Validation-success)
 ![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
 ![Tested on](https://img.shields.io/badge/Hardware-RTX%203050%20(4GB)-green)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19052934.svg)](https://doi.org/10.5281/zenodo.19052934)
+
+### Technical Report
+**[Latent Dissonance Mapping: Deterministic Auditing for LLM Hallucinations](https://doi.org/10.5281/zenodo.19052934)**
 
 **TL;DR**: An ultra-lightweight, hidden-state-based pre-emptive auditor achieving over 0.9 ROC-AUC across three LLM models (Gemma-2B, Llama-3.2-1B, and Mistral-7B) on a single RTX 3050 (4GB). It consistently detects approximately 60% of hallucinations at a 5% False Signal Rate (FSR) across all tested architectures.
 
@@ -154,7 +158,6 @@ The v6.4 engine focuses on **"Latent Trajectory Collapse."** When a model begins
 Omega Engine identifies unauthorized content generation as a primary precursor to hallucinations. When a model produces information beyond the scope of the initial query (e.g., self-generated follow-up questions), the system captures the resulting increase in entropy and latent dissonance. Such "runaway" generation is flagged as high-risk, providing an early warning before the model commits to a definitive factual error.
 
 ## 6. Roadmap
-- [ ] **Cross-Model Validation**: Verifying theoretical generalizability across different LLMs.
 - [ ] **Training Efficiency**: Applying the theory to filter training data and reduce computational resource costs.
 
 ## 7. License / Contact
