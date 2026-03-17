@@ -12,6 +12,10 @@
 
 ![ROC-AUC Curve](https://github.com/yubainu/sibainu-engine/raw/main/ROC-AUC(gemma2b%2Cmistral7b%2Cllama1b).png)
 
+## The Concept: Inferential Dissonance Monitoring
+Unlike traditional hallucination detectors that rely on external knowledge bases or LLM-as-a-judge, LDM (Latent Dissonance Mapping) monitors the internal "computational strain" of the model.
+
+I focus on Inferential Dissonance: the geometric distortion in latent space that occurs when a model's internal logic conflicts with its output generation. This deterministic approach allows for identifying hallucinations caused by reasoning failures, even when the model appears confident.
 
 ## 1. Technical Overview
 This project demonstrates a lightweight auditing layer that monitors internal **Hidden State Dynamics** to detect hallucinations *before* token generation.
