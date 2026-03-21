@@ -36,7 +36,7 @@ The Omega Engine is designed for ultra-low latency real-time auditing of LLM gen
 
 | Measurement Scope | Latency | Technical Context |
 | :--- | :--- | :--- |
-| **Auditing Core (NumPy)** | **< 1.0 ms** | Pure mathematical vectorized computation. |
+| **Auditing Core (NumPy)** | **1.2 ms** | Pure mathematical vectorized computation. |
 | **Data I/O & Validation** | **~12.0 ms** | Pydantic validation and List-to-Array conversion. |
 | **End-to-End API (Local)** | **15.0 - 25.0 ms** | Total response time including FastAPI overhead. |
 
