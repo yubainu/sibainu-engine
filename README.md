@@ -113,7 +113,8 @@ No private Hugging Face tokens are required or stored on the client side.
 
 
 
-### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)Under construction
+### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
+### 🔄Under construction🔄
 
 This script implements a **Closed-Loop Safety Control** that automatically triggers a re-generation (Recovery Mode) when the engine detects a physical neural anomaly.
 
