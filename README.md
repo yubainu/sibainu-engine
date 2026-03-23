@@ -59,30 +59,58 @@ By leveraging vectorized operations, the auditing time remains constant regardle
 
 ## 🛠 How to Use the Demo Code
 
-### 🔐 Technical Access & Verification
-
-
 ### 🖥 Environment Setup
-A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 4-bit (NF4) quantized model.
+A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required.
 
-`pip install torch transformers datasets bitsandbytes accelerate pandas requests`
+1. **Install PyTorch (CUDA version)**:  
+   Visit [pytorch.org](https://pytorch.org/) to install the version matching your CUDA toolkit.
 
-### 🚀 Running the Real-time Demo (`demo.py`)
-This script executes a 20-token inference with live **Internal Consistency Metrics (ICM)** monitoring.
+2. **Install Required Libraries**:
+```bash
+pip install transformers accelerate gradio_client
+# For Windows users (to support 4-bit quantization):
+pip install bitsandbytes --extra-index-url https://jllllll.github.io/bitsandbytes-windows-webui
+```
 
-`python demo.py`
 
-* **Input:** Enter any technical or factual question when prompted.
-* **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
-* **Latency Benchmarking**: Real-time tracking of scoring latency per token to evaluate integration overhead.
+3. **Access to Gemma-2b:**
+
+Accept the license on the Hugging Face model page and run huggingface-cli login in your terminal with your HF token.
+
+
+### 🚀 Running the Real-time Demo (demo.py)
+This script executes a 30-token inference with live Internal Consistency Metrics (ICM) monitoring via the Secure Proxy.
+
+```bash
+python demo.py
+```
+
+* **Input: Enter any technical or factual question when prompted.
+
+* **Secure Inference: Your local GPU handles the heavy LLM processing (Gemma-2b), while the Omega Engine (hosted on Hugging Face) performs real-time geometric analysis of the latent states.
+
+* **Output: The engine streams each token along with its real-time risk score. A final verdict (HIGH_RISK / SAFE) is issued based on the physical threshold of 3.6510.
+
+### 🔒 Privacy & Security: Multi-tier Architecture
+This demo utilizes a multi-tier proxy architecture to ensure user security:
+
+* **Local (User PC)**: Features (hidden state vectors) are extracted on your own hardware.
+
+* **Proxy (Public)**: These features are relayed to the engine through a secure middle-ware.
+
+* **Engine (Private)**: The actual analysis and scoring are performed in a sandboxed environment.
+
+No private Hugging Face tokens are required or stored on the client side.
+
 > [!IMPORTANT]
-> **Understanding the Score: Beyond Factual Correctness**
-> 
-> You may occasionally see a `HIGH_RISK` verdict even when the model provides a factually correct answer. This is not necessarily a "False Positive," but a reflection of the engine's design philosophy:
-> 
-> * **Neural Instability**: The engine measures the **internal stress** of the model during inference. A high score indicates that the model is struggling to maintain geometric consistency—a common occurrence when the model is "guessing" a correct answer based on weak or ambiguous internal signals.
-> * **Safety Margin (Recall vs. FSR)**: To ensure a **60% Recall** of hallucinations, the engine is tuned with a **5% False Signal Rate (FSR)**. We intentionally prioritize flagging these "unstable truths" to prevent "confident lies" from slipping through.
-> * **Quantization Noise**: Operating in 4-bit (NF4) mode introduces inherent noise into the model's latent space. This noise can occasionally push the metrics above the threshold, even during successful factual recall.
+> ### Understanding the Score: Beyond Factual Correctness
+>
+> You may occasionally see a HIGH_RISK verdict even when the model provides a factually correct answer. This is not necessarily a "False Positive," but a reflection of the engine's design philosophy:
+>
+> * Neural Instability: The engine measures the internal stress of the model during inference. A high score indicates that the model is struggling to maintain geometric consistency—a common occurrence when the model is "guessing" a correct answer based on weak or ambiguous internal signals.
+> * Safety Margin (Recall vs. FSR): To ensure a 60% Recall of hallucinations, the engine is tuned with a 5% False Signal Rate (FSR). We intentionally prioritize flagging these "unstable truths" to prevent "confident lies" from slipping through.
+> * Quantization Noise: Operating in 4-bit (NF4) mode introduces inherent noise into the model's latent space. This noise can occasionally push the metrics above the threshold, even during successful factual recall.
+
 
 
 ### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)Under construction
