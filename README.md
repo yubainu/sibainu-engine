@@ -99,16 +99,6 @@ This script implements a **Closed-Loop Safety Control** that automatically trigg
 * **Automatic Recovery**: If the threshold of **3.6510** is breached, the agent immediately aborts the corrupted session and re-runs the inference using **Deterministic Greedy Search** to ensure factual stability.
 * **Output**: A final, verified response is delivered after the autonomous correction process.
 
-### 📊 Running the HaluEval Benchmark (`Sibainu_HaluEval_NF4_Scanner.py`)
-This script automates the validation process using the official **HaluEval (QA)** dataset from Hugging Face.
-
-`python Sibainu_HaluEval_NF4_Scanner.py`
-
-* **Instructions:**
-  1. Enter the **Start ID** (e.g., `0`) to pull from the dataset.
-  2. Enter the **Number of Samples** (e.g., `10`) to scan.
-* **Result:** A CSV file (e.g., `halueval_results_0_to_9.csv`) will be generated. This file contains raw ICM scores for both "Right" and "Hallucinated" pairs, allowing for immediate ROC-AUC calculation.
-
 ## 3. Benchmarks (Actual Measurements)
 ### Dataset
 * **Dataset Used**: [HaluEval-QA dataset](https://github.com/bjascob/HaluEval)
