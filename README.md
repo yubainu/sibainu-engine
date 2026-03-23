@@ -90,7 +90,7 @@ This script executes a 20-token inference with live **Internal Consistency Metri
 > * **Quantization Noise**: Operating in 4-bit (NF4) mode introduces inherent noise into the model's latent space. This noise can occasionally push the metrics above the threshold, even during successful factual recall.
 
 
-### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
+### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)Under construction
 
 This script implements a **Closed-Loop Safety Control** that automatically triggers a re-generation (Recovery Mode) when the engine detects a physical neural anomaly.
 
