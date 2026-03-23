@@ -61,11 +61,6 @@ By leveraging vectorized operations, the auditing time remains constant regardle
 
 ### 🔐 Technical Access & Verification
 
-The Sibainu Engine API is currently hosted in a **Private Space** to protect the proprietary **Internal Consistency Metrics (ICM)** logic and prevent unauthorized scraping. 
-
-
-1. **Contact:** Reach out to **yubainu98(at)gmail.com** with your professional affiliation.
-2. **Purpose:** Briefly state the scope of your verification (e.g., "HaluEval large-scale benchmarking").
 
 ### 🖥 Environment Setup
 A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 4-bit (NF4) quantized model.
