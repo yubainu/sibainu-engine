@@ -63,32 +63,19 @@ By leveraging vectorized operations, the auditing time remains constant regardle
 
 The Sibainu Engine API is currently hosted in a **Private Space** to protect the proprietary **Internal Consistency Metrics (ICM)** logic and prevent unauthorized scraping. 
 
-If you are a technical auditor, AI researcher, or represent an organization interested in evaluating the engine's performance (confirming the **60% Recall at 5% FSR** target), please follow the steps below to request a temporary verification token:
 
 1. **Contact:** Reach out to **yubainu98(at)gmail.com** with your professional affiliation.
 2. **Purpose:** Briefly state the scope of your verification (e.g., "HaluEval large-scale benchmarking").
-3. **Issuance:** A **read-only access token** will be provided for a limited duration to facilitate your independent audit using the provided scripts.
-(Please allow up to 24 hours for a response due to time zone differences.)
 
 ### 🖥 Environment Setup
 A GPU with at least **4GB VRAM** (e.g., NVIDIA RTX 3050) is required to run the 4-bit (NF4) quantized model.
 
 `pip install torch transformers datasets bitsandbytes accelerate pandas requests`
 
-### 🔑 Obtain Access Token
-The Sibainu Engine API is hosted in a **Private Space**. To perform an audit, you must authenticate your requests.
-
-1. Open `demo6.4.py` or `recovery_agent_gemma.py`or `Sibainu_HaluEval_NF4_Scanner.py`.
-2. Locate the following configuration line:
-   `HF_TOKEN = ""` 
-3. **Insert your provided token between the quotes.** (e.g., `HF_TOKEN = "hf_..."`)
-
-
-
-### 🚀 Running the Real-time Demo (`demo6.4.py`)
+### 🚀 Running the Real-time Demo (`demo.py`)
 This script executes a 20-token inference with live **Internal Consistency Metrics (ICM)** monitoring.
 
-`python demo6.4.py`
+`python demo.py`
 
 * **Input:** Enter any technical or factual question when prompted.
 * **Output:** The engine streams each token along with its real-time risk score. A final verdict (`HIGH_RISK` / `LOW_RISK`) is issued based on the physical threshold of **3.6510**.
