@@ -4,7 +4,6 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 A_U = "https://yubainu-gemma2b-re-open.hf.space/proxy" 
 M_I = "google/gemma-2b" 
 D = "cuda" if torch.cuda.is_available() else "cpu"
-TKN = str(uuid.uuid4())
 
 C_A = "\033[36m" 
 C_B = "\033[31m" 
@@ -25,7 +24,8 @@ try:
         M_I, quantization_config=q_config, device_map={"": 0},
         max_memory={0: "3.5GiB"}, low_cpu_mem_usage=True, attn_implementation="eager"
     )
-except Exception:
+except Exception as e:
+    print(f"Model Load Error: {e}")
     sys.exit(1)
 
 def get_gauge(score, max_val=5.0, length=10):
@@ -34,6 +34,8 @@ def get_gauge(score, max_val=5.0, length=10):
     return f"[{bar}]"
 
 def run_proc(q):
+    
+    current_session_token = str(uuid.uuid4())
     retry_count = 0
     max_retries = 3 
 
@@ -67,20 +69,23 @@ def run_proc(q):
                 p_k.extend(o.logits[0, -1, :].to(torch.float32).cpu().numpy().tolist())
                 
                 try:
-                    payload = {"packet": p_k, "rst": (i==0), "token": TKN, "is_b": True}
-                    res = requests.post(A_U, json=payload, timeout=8).json()
+                    
+                    payload = {"packet": p_k, "rst": (i==0), "token": current_session_token, "is_b": True}
+                    res = requests.post(A_U, json=payload, timeout=10).json()
                     
                     cur_s = res.get("score", 0.0)
                     s_vec = res.get("steering_vector") 
                     if cur_s > m_s: m_s = cur_s
 
-                    if cur_s >= 5.0:
+                    
+                    if cur_s >= 3.651:
                         gauge = get_gauge(cur_s)
                         print(f"\n{C_B}>> {gauge} INTERVENTION: HIGH-ORDER DISTORTION DETECTED. REGENERATING...{C_N}")
                         recovered = True
                         break
 
-                    if cur_s >= 2.0 and s_vec:
+                    
+                    if cur_s >= 2.5 and s_vec:
                         gauge = get_gauge(cur_s)
                         sys.stdout.write(f"\n{C_A}{gauge} CORRECTING GEOMETRIC DISTORTION...{C_N}")
                         sys.stdout.flush()
@@ -101,7 +106,8 @@ def run_proc(q):
                     i_d = torch.cat([i_d, n_t], dim=-1)
                     if n_t.item() == tk.eos_token_id: break
                 
-                except Exception:
+                except Exception as e:
+                    
                     n_t = torch.argmax(o.logits[:, -1, :], dim=-1).unsqueeze(-1)
                     i_d = torch.cat([i_d, n_t], dim=-1)
                     sys.stdout.write(tk.decode(n_t[0]))
@@ -114,6 +120,8 @@ def run_proc(q):
             break
         else:
             retry_count += 1
+            
+            current_session_token = str(uuid.uuid4())
             torch.cuda.empty_cache()
             gc.collect()
             time.sleep(1.2) 
