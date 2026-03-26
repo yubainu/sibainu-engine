@@ -114,14 +114,20 @@ No private Hugging Face tokens are required or stored on the client side.
 
 
 ### 🔄 Running the Automated Recovery Demo (`recovery_agent_gemma.py`)
-### 🔄Under construction🔄
 
-This script implements a **Closed-Loop Safety Control** that automatically triggers a re-generation (Recovery Mode) when the engine detects a physical neural anomaly.
+This script demonstrates a Closed-Loop Neural Calibration System that monitors and corrects the model's latent trajectory in real-time. It ensures high-fidelity output by managing "Geometric Distortion" within the neural manifold.
 
-* **Input**: Enter a factual or complex question (e.g., "What is the tallest mountain in Japan?").
-* **Real-time Monitoring**: The client streams tokens while the remote API issues `CONTINUE` or `RECOVER` commands based on the live FSR5 score.
-* **Automatic Recovery**: If the threshold of **3.6510** is breached, the agent immediately aborts the corrupted session and re-runs the inference using **Deterministic Greedy Search** to ensure factual stability.
-* **Output**: A final, verified response is delivered after the autonomous correction process.
+#### Real-time Monitoring & Steering (Route A):
+The system continuously analyzes the structural integrity of the generated hidden states. When a "Geometric Distortion" is detected, the agent applies an immediate Steering Vector to the model's activation. This "surgical" intervention recalibrates the token selection process without interrupting the stream, visualized by the [CORRECTING...] status gauge.
+
+#### Autonomous Recovery (Route B):
+If the high-order distortion exceeds the tunable safety manifold, the system triggers an emergency Recovery Mode. The corrupted session is instantly aborted and re-initialized with a stabilized inference strategy to prevent factual hallucinations or structural collapse.
+
+#### Latency Note:
+The current execution involves high-dimensional tensor synchronization between the local client and the remote analysis API. While this introduces noticeable latency in the demo environment, the architecture is designed for future integration into edge-accelerated inference engines where this overhead is minimized.
+
+#### Output:
+A final, verified response delivered through a dual-layer safety architecture that prioritizes neural stability over raw generation speed.
 
 ## 3. Benchmarks (Actual Measurements)
 ### Dataset
@@ -164,6 +170,7 @@ Omega Engine identifies unauthorized content generation as a primary precursor t
 
 ## 6. Roadmap
 - [ ] **Training Efficiency**: Applying the theory to filter training data and reduce computational resource costs.
+- [ ] **A training model with a lower probability of hallucinations**: Proof-of-concept experiments to realize higher-precision models with a lower probability of hallucinations by applying this technology to audit internal geometric distortions during the training phase.
 
 ## 7. License / Contact
 **License: All Rights Reserved (Proprietary)**
