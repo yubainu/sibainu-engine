@@ -179,7 +179,7 @@ The v6.4 engine focuses on **"Latent Trajectory Collapse."** When a model begins
 Omega Engine identifies unauthorized content generation as a primary precursor to hallucinations. When a model produces information beyond the scope of the initial query (e.g., self-generated follow-up questions), the system captures the resulting increase in entropy and latent dissonance. Such "runaway" generation is flagged as high-risk, providing an early warning before the model commits to a definitive factual error.
 
 ## 6. Roadmap
-- [ ] **Omega Learning Phase**:  Low-cost generation of high-logic models via in-training feedback control using Adaptive Omega thresholds.
+- [ ] **Learning Phase**:  Low-cost generation of high-logic models via in-training feedback control using Adaptive Omega thresholds.
  - [ ] **A training model with a lower probability of hallucinations**: Proof-of-concept experiments to realize higher-precision models with a lower probability of hallucinations by applying this technology to audit internal geometric distortions during the training phase.
 
 ## 7. License / Contact
