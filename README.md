@@ -8,7 +8,17 @@
 ### Technical Report
 **[Latent Dissonance Mapping: Deterministic Auditing for LLM Hallucinations](https://doi.org/10.5281/zenodo.19052934)**
 
-**TL;DR**: An ultra-lightweight, hidden-state-based pre-emptive auditor achieving over 0.9 ROC-AUC across three LLM models (Gemma-2B, Llama-3.2-1B, and Mistral-7B) on a single RTX 3050 (4GB). It consistently detects approximately 60% of hallucinations at a 5% False Signal Rate (FSR) across all tested architectures.
+# Sibainu Engine: Pre-emptive Hallucination Audit via Latent Geometry
+
+**TL;DR:** Stop using LLMs to fact-check LLMs. 
+Sibainu is an ultra-lightweight auditor that detects hallucinations *before* they are sampled by monitoring "Layer Dissonance" in the hidden state. 
+Hallucinations aren't just wrong words; they are detectable geometric anomalies in the model's internal state dynamics.
+
+- **Pre-emptive:** Identifies the collapse of latent trajectories with <1ms latency.
+- **Efficient:** ROC-AUC > 0.90 on Gemma, Llama, and Mistral using a single RTX 3050 (4GB).
+- **Deterministic:** No secondary LLM calls; 60% detection at 5% FSR across all tested architectures.
+
+
 
 ![ROC-AUC Curve](https://github.com/yubainu/sibainu-engine/raw/main/ROC-AUC(gemma2b%2Cmistral7b%2Cllama1b).png)
 
