@@ -5,6 +5,12 @@ Shibainu Engine (SIB) is an experimental project designed to solve the trade-off
 
 By strictly controlling weight update variance (**Std 0.0074**), SIB protects the model's internal Natural Language Inference (NLI) capabilities, maintaining high integrity while adapting to specific tasks.
 
+<img width="1536" height="757" alt="Figure_1" src="https://github.com/user-attachments/assets/421628cc-9654-4fdc-99e1-3ab90ad49689" />
+
+<img width="4200" height="2400" alt="weight_distribution_zoom_005" src="https://github.com/user-attachments/assets/8a0e6d32-e91c-4a15-817c-b94d921ab8fc" />
+
+<img width="1000" height="700" alt="Figure_1" src="https://github.com/user-attachments/assets/47c09006-a0aa-473b-86ce-b33e0cd7ae04" />
+
 ---
 
 ## 2. The Problem: The "Yes-man" Trap
