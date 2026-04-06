@@ -71,3 +71,13 @@ Fine-tuning typically induces a "Yes-man bias," causing detection rates to crash
 Our experiments demonstrate that **maintaining a high NLI score is the fundamental key to suppressing hallucinations.** Shibainu Engine (SIB) successfully balances intelligence and performance by preventing the "sycophancy" caused by traditional fine-tuning.
 
 ---
+
+## 6. Future Work
+To further validate the robustness and universality of the Shibainu Engine (SIB), we plan to conduct the following:
+
+* **Verification of Reproducibility via Different Seeds**: 
+  We will conduct tests across multiple random seeds to ensure that the logic-preserving effect of SIB is not dependent on a specific initialization but is a consistent property of the method.
+* **Cross-Model Validation**: 
+  We aim to verify the reproducibility of these results on other model architectures (e.g., Llama-3, Mistral, and other variants of Gemma) to prove the generalizability of the "Omega Strategy."
+* **Advanced Prompt Engineering**:
+  We will explore more sophisticated prompting techniques to further improve the hallucination detection rate while maintaining the current NLI scores.
