@@ -5,6 +5,8 @@ Shibainu Engine (SIB) is an experimental project designed to solve the trade-off
 
 By strictly controlling weight update variance (**Std 0.0074**), SIB protects the model's internal Natural Language Inference (NLI) capabilities, maintaining high integrity while adapting to specific tasks.
 
+This methodology leverages a pre-emptive hallucination detection framework to detect real-time geometric anomalies within the internal representations. It features a dynamic gain scheduler that optimizes the training process, preventing logical collapse while enhancing task adaptation.
+
 <img width="1536" height="757" alt="Figure_1" src="https://github.com/user-attachments/assets/421628cc-9654-4fdc-99e1-3ab90ad49689" />
 
 <img width="4200" height="2400" alt="weight_distribution_zoom_005" src="https://github.com/user-attachments/assets/8a0e6d32-e91c-4a15-817c-b94d921ab8fc" />
