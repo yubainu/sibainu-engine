@@ -19,8 +19,9 @@ Hallucinations aren't just wrong words; they are detectable geometric anomalies 
 - **Deterministic:** No secondary LLM calls; 60% detection at 5% FSR across all tested architectures.
 
 
+<img width="800" height="600" alt="roc-auc" src="https://github.com/user-attachments/assets/e094c0a1-a61b-4c84-acd4-44ead09ea65c" />
 
-![ROC-AUC Curve](https://github.com/yubainu/sibainu-engine/raw/main/ROC-AUC(gemma2b%2Cmistral7b%2Cllama1b).png)
+
 
 ## The Concept: Inferential Dissonance Monitoring
 Unlike traditional hallucination detectors that rely on external knowledge bases or LLM-as-a-judge, LDM (Latent Dissonance Mapping) monitors the internal "computational strain" of the model.
