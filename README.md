@@ -15,7 +15,7 @@ Sibainu is an ultra-lightweight auditor that detects hallucinations *before* the
 Hallucinations aren't just wrong words; they are detectable geometric anomalies in the model's internal state dynamics.
 
 - **Pre-emptive:** Identifies the collapse of latent trajectories with <1ms latency.
-- **Efficient:** ROC-AUC > 0.90 on Gemma, Llama, and Mistral using a single RTX 3050 (4GB).
+- **Efficient:** ROC-AUC > 0.90 on Gemma,Gemma2,Llama, and Mistral using a single RTX 3050 (4GB)and Google Colab(T4).
 - **Deterministic:** No secondary LLM calls; 60% detection at 5% FSR across all tested architectures.
 
 
@@ -167,6 +167,14 @@ A final, verified response delivered through a dual-layer safety architecture th
 | ROC-AUC | 0.9035 |
 | Recall @5% FSR | 0.5960 |
 | Recall @10% FSR | 0.7200 |
+
+### 4.(unsloth)gemma-2-9b-it-bnb-4bit(N=500)
+| Metric | Value |
+| :--- | :--- |
+| ROC-AUC | 0.9521 |
+| Recall @5% FSR | 0.8620 |
+| Recall @10% FSR | 0.9180 |
+
 
 > [!NOTE]
 > **Separation Efficiency**: At a 5.0% FSR (False Signal Rate), the engine captures **59.7%** of all hallucinations in the HaluEval-QA dataset.
