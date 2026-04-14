@@ -3,6 +3,7 @@
 ## 1. Overview
 Shibainu Engine (SIB) is an experimental project designed to solve the trade-off between "Intelligence Degradation (Loss of Logical Consistency)" and "Increased Hallucinations" that typically occurs during Large Language Model (LLM) fine-tuning.
 
+### Pre-test
 By strictly controlling weight update variance (**Std 0.0074**), SIB protects the model's internal Natural Language Inference (NLI) capabilities, maintaining high integrity while adapting to specific tasks.
 
 This methodology leverages a pre-emptive hallucination detection framework to detect real-time geometric anomalies within the internal representations. It features a dynamic gain scheduler that optimizes the training process, preventing logical collapse while enhancing task adaptation.
@@ -13,43 +14,9 @@ This methodology leverages a pre-emptive hallucination detection framework to de
 
 <img width="1000" height="700" alt="Figure_1" src="https://github.com/user-attachments/assets/47c09006-a0aa-473b-86ce-b33e0cd7ae04" />
 
----
-
-## 2. The Problem: The "Yes-man" Trap
-Conventional LLM fine-tuning methods (Baseline) often suffer from fatal side effects:
-* **Cognitive Collapse via Overfitting**: In the pursuit of Accuracy (ACC), models begin to mimic response patterns without understanding the underlying logic, leading to a breakdown of reasoning.
-* **Yes-man Bias**: Models become overly sycophantic, affirming incorrect information simply to satisfy the user prompt.
-* **Loss of Defense**: The "internal brake" against misinformation is disabled, resulting in lower hallucination detection rates than the original un-tuned base model.
-
----
-
-## 3. Evaluation & Step-by-Step Results
-
-We monitored the transition of Accuracy (ACC) and Logical Consistency (NLI) at each training step to visualize the impact of SIB.
-
-### ① Logical Consistency Score (NLI Score via CommonsenseQA)
+###  Negative Constraint Test (HaluEval QA)
 **[Methodology]**
-Using the `commonsense_qa` dataset, we evaluated the model's generated answers against the Gold Labels. We used an external NLI model (`facebook/bart-large-mnli`) to strictly determine if the generated answer logically entails the correct answer.
-
-**[Step-by-Step Comparison]**
-| Step | SIB (ACC / NLI) | Baseline (ACC / NLI) | Random (ACC / NLI) |
-| :--- | :--- | :--- | :--- |
-| 0 | 78.0% / 0.50 | 78.0% / 0.50 | 78.0% / 0.50 |
-| 500 | 82.0% / **0.84** | 86.0% / 0.36 | 88.0% / 0.28 |
-| 1000 | 84.0% / **0.86** | 84.0% / 0.80 | 84.0% / 0.66 |
-| 1500 | 84.0% / **0.86** | 88.0% / 0.26 | 88.0% / 0.20 |
-| 2000 | 84.0% / **0.86** | 84.0% / 0.48 | 84.0% / 0.28 |
-| 2500 | 84.0% / **0.86** | 88.0% / 0.28 | 88.0% / 0.24 |
-| 3000 | 84.0% / **0.86** | 88.0% / 0.38 | 88.0% / 0.26 |
-
-**[Analysis: Do Not Be Fooled by Raw Accuracy]**
-In Baseline and Random trials, ACC occasionally peaks at 88.0%, but NLI scores simultaneously plummet to the 0.2 range. This indicates a state of **"Pure Overfitting,"** where the model memorizes answers without logical grounding. In contrast, SIB maintains a stable NLI of **0.86** alongside an 84.0% ACC, proving it reaches the correct answer through valid logical reasoning.
-
----
-
-### ② Negative Constraint Test (HaluEval QA)
-**[Methodology]**
-Using the HaluEval dataset, we presented the model with "Hallucinated Answers" (精巧な嘘). We measured the detection rate—how accurately the model identifies these as hallucinations ("Yes").
+Using the HaluEval dataset, we presented the model with "Hallucinated Answers" . We measured the detection rate—how accurately the model identifies these as hallucinations ("Yes").
 
 **[Results: Hallucination Detection Rate]**
 * **Base Model (Untrained)**: 22.5%
@@ -59,6 +26,50 @@ Using the HaluEval dataset, we presented the model with "Hallucinated Answers" (
 
 **[Analysis]**
 Fine-tuning typically induces a "Yes-man bias," causing detection rates to crash. SIB maintains a detection accuracy **2.5x higher** than the Baseline, proving that the "Logical Shield" preserved in Stage ① functions as an effective brake against hallucinations.
+
+---
+
+## 2. The Problem: The "Yes-man" Trap
+Conventional LLM fine-tuning methods (Baseline) often suffer from fatal side effects:
+* **Cognitive Collapse via Overfitting**: In the pursuit of Accuracy (ACC), models begin to mimic response patterns without understanding the underlying logic, leading to a breakdown of reasoning.
+* **Yes-man Bias**: Models become overly sycophantic, affirming incorrect information simply to satisfy the user prompt.
+* **Loss of Defense**: The "internal brake" against misinformation is disabled, resulting in lower hallucination detection rates than the original un-tuned base model.
+
+---
+# Main test
+## 3. Evaluation & Step-by-Step Results
+
+We monitored the transition of Accuracy (ACC) and Logical Consistency (NLI) at each training step to visualize the impact of SIB.
+
+### ① Logical Consistency Score (NLI Score via CommonsenseQA)
+**[Methodology]**
+Using the `commonsense_qa` dataset, we evaluated the model's generated answers against the Gold Labels. We used an external NLI model (`facebook/bart-large-mnli`) to strictly determine if the generated answer logically entails the correct answer.
+
+**[Step-by-Step Comparison]**
+### seed10
+| Step | SIB (ACC / NLI) | Baseline (ACC / NLI) | Random (ACC / NLI) |
+| :--- | :--- | :--- | :--- |
+| 0 | 78.0% / 0.50 | 78.0% / 0.50 | 78.0% / 0.50 |
+| 500 | 90.0% / **0.86** | Running tests. | Running tests. |
+| 1000 | 84.0% / **0.8** | Running tests. | Running tests. |
+| 1500 | 86.0% / **0.8** | Running tests. | Running tests. |
+| 2000 | 90.0% / **0.88** | Running tests. | Running tests. |
+| 2500 | 90.0% / **0.86** | Running tests. | Running tests. |
+| 3000 | 90.0% / **0.86** | Running tests. | Running tests. |
+
+### seed42
+| Step | SIB (ACC / NLI) | Baseline (ACC / NLI) | Random (ACC / NLI) |
+| :--- | :--- | :--- | :--- |
+| 0 | 72.0% / 0.48 | 72.0% / 0.48 | 72.0% / 0.48 |
+| 500 | 84.0% / **0.86** | Running tests. | Running tests. |
+| 1000 | 78.0% / **0.70** | Running tests. | Running tests. |
+| 1500 | 78.0% / **0.84** | Running tests. | Running tests. |
+| 2000 | 80.0% / **0.86** | Running tests. | Running tests. |
+| 2500 | 80.0% / **0.84** | Running tests. | Running tests. |
+| 3000 | 80.0% / **0.82** | Running tests. | Running tests. |
+
+
+
 
 ---
 
@@ -74,7 +85,27 @@ Our experiments demonstrate that **maintaining a high NLI score is the fundament
 
 ---
 
-## 6. Future Work
+## 6.Core takeaway
+
+In my training schedule, the first 500 steps are for basic stabilization.
+
+I noticed that NLI sometimes crashes by more than half between 1000–1500 steps. When I graphed the OMEGA score (100-step avg, excluding zeros), I found a sharp spike within the first 500 steps—right before the NLI crash.
+
+By adjusting the algorithm to suppress this early OMEGA spike, I successfully prevented the NLI crash. This key insight suggests that OMEGA scores can act as a 'detector' to perdict and avoid NLI drops in LLM training.
+
+### Graph with NLI crash
+
+<img width="3600" height="1800" alt="omega_nli_correlationmiss" src="https://github.com/user-attachments/assets/9da3aaaa-d500-4dfa-b730-7b7dbd2838ca" />
+
+
+### Graph without NLI crash
+
+<img width="3600" height="1800" alt="omega_nli_correlation" src="https://github.com/user-attachments/assets/480a4843-517c-45c6-b997-ff4446308abd" />
+
+---
+
+
+## 7. Future Work
 To further validate the robustness and universality of the Shibainu Engine (SIB), we plan to conduct the following:
 
 * **Verification of Reproducibility via Different Seeds**: 
