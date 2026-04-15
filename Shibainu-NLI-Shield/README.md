@@ -32,7 +32,7 @@ The following schedule defines the phase-specific strategy for reconfiguring the
 | Phase | Steps | Technical Label | Strategic Intent | Learning Rate ($\eta$) | Gain ($\omega$) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **1** | 0 - 99 | **Linear Manifold Warmup** | Initial gradient stabilization under "Muzzle" constraints. Prevents early-stage representation drift. | $Linear(0 \to \eta_{base})$ | $0.00 \to 0.10$ |
-| **2** | 100 - 499 | **Structural Collapse (P1)** | Forcing the collapse of existing shallow manifolds using "Muzzle" logic to purge noise. | $\eta_{base}$ | $0.10 \to 0.20$ |
+| **2** | 100 - 499 | **Structural Collapse (P1)** | Forcing the collapse of existing shallow manifolds using "Muzzle" logic to purge noise.When the Omega Score is 5 or higher, the corresponding data is excluded from the training set. | $\eta_{base}$ | $0.10 \to 0.20$ |
 | **3** | 500 - 999 | **Forced Deconstruction (P2)** | Active deconstruction via **high-pressure gradient injection** (Smash) to escape local optima. | $\eta_{base}$ | $0.20 \to 1.00$ |
 | **4** | 1000 - 2499 | **Geometric Stabilization** | Rapid recovery and stabilization of the newly reconfigured manifold structures. | $5 \times 10^{-2} \cdot \eta_{base}$ | $0.01 \to 0.05$ |
 | **5** | 2500 - 3000 | **Latent Manifold Polishing** | Final precision alignment and entropy minimization for long-term consistency. | $2 \times 10^{-2} \cdot \eta_{base}$ | $0.005 \to 0.01$ |
