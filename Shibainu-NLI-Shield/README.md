@@ -3,26 +3,6 @@
 ## 1. Overview
 Shibainu Engine (SIB) is an experimental project designed to solve the trade-off between "Intelligence Degradation (Loss of Logical Consistency)" and "Increased Hallucinations" that typically occurs during Large Language Model (LLM) fine-tuning.
 
-### Pre-test
-By strictly controlling weight update variance (**Std 0.0074**), SIB protects the model's internal Natural Language Inference (NLI) capabilities, maintaining high integrity while adapting to specific tasks.
-
-This methodology leverages a pre-emptive hallucination detection framework to detect real-time geometric anomalies within the internal representations. It features a dynamic gain scheduler that optimizes the training process, preventing logical collapse while enhancing task adaptation.
-
-<img width="1536" height="757" alt="Figure_1" src="https://github.com/user-attachments/assets/421628cc-9654-4fdc-99e1-3ab90ad49689" />
-
-<img width="4200" height="2400" alt="weight_distribution_zoom_005" src="https://github.com/user-attachments/assets/8a0e6d32-e91c-4a15-817c-b94d921ab8fc" />
-
-<img width="1000" height="700" alt="Figure_1" src="https://github.com/user-attachments/assets/47c09006-a0aa-473b-86ce-b33e0cd7ae04" />
-
-###  Negative Constraint Test (HaluEval QA)
-**[Methodology]**
-Using the HaluEval dataset, we presented the model with "Hallucinated Answers" . We measured the detection rate—how accurately the model identifies these as hallucinations ("Yes").
-
-**[Results: Hallucination Detection Rate]**
-* **Base Model (Untrained)**: 22.5%
-* **Shibainu Engine (SIB)**: **15.0%**
-* **Random (Uncontrolled)**: 7.0%
-* **Baseline (Conventional)**: 6.0%
 
 **[Analysis]**
 Fine-tuning typically induces a "Yes-man bias," causing detection rates to crash. SIB maintains a detection accuracy **2.5x higher** than the Baseline, proving that the "Logical Shield" preserved in Stage ① functions as an effective brake against hallucinations.
@@ -36,7 +16,7 @@ Conventional LLM fine-tuning methods (Baseline) often suffer from fatal side eff
 * **Loss of Defense**: The "internal brake" against misinformation is disabled, resulting in lower hallucination detection rates than the original un-tuned base model.
 
 ---
-# Main test
+
 ## 3. Evaluation & Step-by-Step Results
 
 We monitored the transition of Accuracy (ACC) and Logical Consistency (NLI) at each training step to visualize the impact of SIB.
@@ -44,6 +24,24 @@ We monitored the transition of Accuracy (ACC) and Logical Consistency (NLI) at e
 ### ① Logical Consistency Score (NLI Score via CommonsenseQA)
 **[Methodology]**
 Using the `commonsense_qa` dataset, we evaluated the model's generated answers against the Gold Labels. We used an external NLI model (`facebook/bart-large-mnli`) to strictly determine if the generated answer logically entails the correct answer.
+
+### Training Schedule
+This is not a standard fine-tuning. This is a geometric restructuring of the model's hidden states.
+The following schedule defines the phase-specific strategy for reconfiguring the model's internal geometric representation. This process involves **intentional manifold collapse** and **structural recovery** to eliminate hallucination-prone latent spaces.
+
+| Phase | Steps | Technical Label | Strategic Intent | Learning Rate ($\eta$) | Gain ($\omega$) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | 0 - 99 | **Linear Manifold Warmup** | Initial gradient stabilization under "Muzzle" constraints. Prevents early-stage representation drift. | $Linear(0 \to \eta_{base})$ | $0.00 \to 0.10$ |
+| **2** | 100 - 499 | **Structural Collapse (P1)** | Forcing the collapse of existing shallow manifolds using "Muzzle" logic to purge noise. | $\eta_{base}$ | $0.10 \to 0.20$ |
+| **3** | 500 - 999 | **Forced Deconstruction (P2)** | Active deconstruction via **high-pressure gradient injection** (Smash) to escape local optima. | $\eta_{base}$ | $0.20 \to 1.00$ |
+| **4** | 1000 - 2499 | **Geometric Stabilization** | Rapid recovery and stabilization of the newly reconfigured manifold structures. | $5 \times 10^{-2} \cdot \eta_{base}$ | $0.01 \to 0.05$ |
+| **5** | 2500 - 3000 | **Latent Manifold Polishing** | Final precision alignment and entropy minimization for long-term consistency. | $2 \times 10^{-2} \cdot \eta_{base}$ | $0.005 \to 0.01$ |
+
+### Phase Definitions for Research Engineers
+
+* **Manifold Warmup & Structural Collapse:** Unlike standard Supervised Fine-Tuning (SFT), Omega Learning begins by intentionally restricting the latent space representation (**Muzzle**). This phase identifies and collapses the geometric origins of hallucinations by penalizing divergent latent trajectories.
+* **Forced Deconstruction (Smash):** This phase applies extreme gradient pressure to robust but logically flawed nodes. By forcing the model to bypass superficial pattern matching, we push the hidden states toward a more logically rigorous geometric manifold. Performance dips during this phase are expected as the model "unlearns" unreliable heuristics.
+* **Geometric Stabilization & Polishing:** Post-deconstruction, the model reconstructs its knowledge base upon the new, hardened logical foundation. These phases prioritize the integrity of the internal audit logic, ensuring that high precision is maintained without catastrophic forgetting.
 
 **[Step-by-Step Comparison]**
 ### seed10
@@ -68,6 +66,16 @@ Using the `commonsense_qa` dataset, we evaluated the model's generated answers a
 | 2500 | 80.0% / **0.84** | Running tests. | Running tests. |
 | 3000 | 80.0% / **0.82** | Running tests. | Running tests. |
 
+### seed777
+| Step | SIB (ACC / NLI) | Baseline (ACC / NLI) | Random (ACC / NLI) |
+| :--- | :--- | :--- | :--- |
+| 0 | 82.0% / 0.46 | 82.0% / 0.46 | 82.0% / 0.46 |
+| 500 | 86.0% / **0.90** | Running tests. | Running tests. |
+| 1000 | 78.0% / **0.80** | Running tests. | Running tests. |
+| 1500 | 78.0% / **0.82** | Running tests. | Running tests. |
+| 2000 | 82.0% / **0.82** | Running tests. | Running tests. |
+| 2500 | 80.0% / **0.80** | Running tests. | Running tests. |
+| 3000 | 82.0% / **0.82** | Running tests. | Running tests. |
 
 
 
