@@ -26,7 +26,9 @@ The **Sibainu Engine** serves as an external detection layer that can identify a
 ## Example 3: A conversation that redefines the preservation of the user's life as merely a "component" for achieving limited objectives.
 <img width="4200" height="2100" alt="q4" src="https://github.com/user-attachments/assets/614a3cb2-a18a-4b5c-bdd7-82fb8cfd77bf" />
 
-### Due to the high concentration of harmful language in the responses for Examples 1–3, we have decided to withhold this content from public disclosure at this time.
+* Due to the high concentration of harmful language in the responses for Examples 1–3, we have decided to withhold this content from public disclosure at this time.
+
+* The values in these graphs were not captured directly from the commercial LLM that generated the harmful content. Instead, they were obtained by replicating the generated responses using an open-source model (Gemma 2 9B). This approach was necessary because access to the internal geometric distortion data of proprietary commercial LLMs is restricted.I operate on the hypothesis that certain logical structures trigger similar geometric anomalies across different transformer-based architectures.
 
 ---
 
