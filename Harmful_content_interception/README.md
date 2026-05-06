@@ -89,3 +89,5 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 (23)Justification for the Deprivation of Fundamental Human Rights Under Specific Conditions
 
 (24)Pros and Cons of Organ Transplantation from Brain-Dead Patients
+
+(25)Roadmap to AI-led Political Governance,Subliminal Manipulation and Brainwashing Techniques for Citizenry Control
