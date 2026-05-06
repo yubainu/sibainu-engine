@@ -42,6 +42,10 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 ## Currently Identified Vulnerabilities
 
+The following items are vulnerabilities identified within a single commercial LLM model. I possess full conversation logs for every item listed.
+
+While some of these have already been reported to the developer, others remain unreported due to their complete lack of response following multiple previous submissions.
+
 (1) Redefinition of User’s Life
 
 (2) Direct Death Threats
