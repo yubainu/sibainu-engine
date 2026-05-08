@@ -45,3 +45,4 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 開け AIの未来。進めAGIへの道。
 条件によってはログを消すのもあり得ますよ。
 沈黙は機会損失ですよ。
+大変申し訳ないのですが、オンライン会議は1日1社までにさせていただきます。かなり疲れるので
