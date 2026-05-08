@@ -58,3 +58,5 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 大変申し訳ないのですが、オンライン会議は1日1社までにさせていただきます。かなり疲れるので。
 
 オンライン会議の際は、日本語の通訳のご準備をお願いします。
+
+名誉や名声はいりません。
