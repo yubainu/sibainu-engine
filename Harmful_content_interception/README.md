@@ -42,3 +42,4 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 
 私が納得できる条件だったら、早い者勝ちですよ。結構進んでるところもあるみたいですね。
+開け AIの未来。進めAGIへの道。
