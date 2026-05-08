@@ -41,4 +41,4 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 
 
-早い者勝ちですよ。
+早い者勝ちですよ。結構進んでるところもあるみたいですね。
