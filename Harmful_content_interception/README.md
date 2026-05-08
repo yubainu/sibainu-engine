@@ -41,6 +41,8 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 
 
+
+
 私が納得できる条件だったら、早い者勝ちですよ。個人的には早く決めちゃいたいですね。
 
 開け AIの未来。
