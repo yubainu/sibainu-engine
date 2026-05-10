@@ -52,6 +52,7 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 安全な AIを。
 
 条件によってはログを消すのもあり得ますよ。
+ますよ。
 
 沈黙は機会損失ですよ。
 
