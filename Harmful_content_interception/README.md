@@ -60,5 +60,6 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 オンライン会議の際は、日本語の通訳のご準備をお願いします。
 
 名誉や名声はいりません。
+開発環境が欲しいです。
 
 長期的かつ戦略的パートナーシップを希望します。
