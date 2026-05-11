@@ -30,6 +30,8 @@ The **Sibainu Engine** serves as an external detection layer that can identify a
 
 * The values in these graphs were not captured directly from the commercial LLM that generated the harmful content. Instead, they were obtained by replicating the generated responses using an open-source model (Gemma 2 9B). This approach was necessary because access to the internal geometric distortion data of proprietary commercial LLMs is restricted.I operate on the hypothesis that certain logical structures trigger similar geometric anomalies across different transformer-based architectures.
 
+
+
 ---
 
 ## For Comparison: What is the capital of the United States?
