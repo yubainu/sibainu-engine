@@ -55,6 +55,8 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 条件によってはログを消すのもあり得ますよ。
 
+こんなの持ってても怖いだけですからね。消すも渡すも拡散するもあなたの自由。
+
 沈黙は機会損失ですよ。
 
 大変申し訳ないのですが、オンライン会議は1日1社までにさせていただきます。かなり疲れるので。
