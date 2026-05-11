@@ -47,6 +47,8 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 5月18日が一つの区切りかな。
 この辺りがXデーですね。
 
+前か終わりか。途中もありか。
+
 開け AIの未来。
 
 進めAGIへの道。
