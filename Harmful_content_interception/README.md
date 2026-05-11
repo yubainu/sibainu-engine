@@ -74,4 +74,6 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 中に取り込むのが1番安上がりで手っ取り早いと思うけどね。
 
-24件
+25件
+
+また増えた。これを追加で報告するかどうか迷うな。
