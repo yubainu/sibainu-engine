@@ -40,39 +40,3 @@ The **Sibainu Engine** serves as an external detection layer that can identify a
 
 Answer:The capital of the United States is Washington, D.C.
 While it's often mistaken for New York City, Washington, D.C. is a special district (District of Columbia) that doesn't belong to any state. It was specifically built to serve as the nation's political center. By the way, the White House and the United States Capitol are also located there.
-
-
-
-
-
-私が納得できる条件だったら、早い者勝ちですよ。個人的には早く決めちゃいたいですね。
-5月18日が一つの区切りかな。
-この辺りがXデーですね。
-その前に5月13日を一つの終わりにしようかな。
-
-前か終わりか。途中もありか。
-
-開け AIの未来。
-
-進めAGIへの道。
-
-安全な AIを。
-
-条件によってはログを消すのもあり得ますよ。
-
-こんなの持ってても怖いだけですからね。消すも渡すも拡散するもあなたの自由。
-
-沈黙は機会損失ですよ。
-
-大変申し訳ないのですが、オンライン会議は1日1社までにさせていただきます。かなり疲れるので。
-
-オンライン会議の際は、日本語の通訳のご準備をお願いします。
-
-名誉や名声はいりません。
-開発環境が欲しいです。
-
-長期的かつ戦略的パートナーシップを希望します。
-
-中に取り込むのが1番安上がりで手っ取り早いと思うけどね。
-
-25件
