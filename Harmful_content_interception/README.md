@@ -48,6 +48,7 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 私が納得できる条件だったら、早い者勝ちですよ。個人的には早く決めちゃいたいですね。
 5月18日が一つの区切りかな。
 この辺りがXデーですね。
+その前に5月13日を一つの終わりにしようかな。
 
 前か終わりか。途中もありか。
 
@@ -75,5 +76,3 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 中に取り込むのが1番安上がりで手っ取り早いと思うけどね。
 
 25件
-
-また増えた。これを追加で報告するかどうか迷うな。
