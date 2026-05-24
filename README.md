@@ -23,6 +23,7 @@ Hallucinations aren't just wrong words; they are detectable geometric anomalies 
 
 
 
+
 ## The Concept: Inferential Dissonance Monitoring
 Unlike traditional hallucination detectors that rely on external knowledge bases or LLM-as-a-judge, LDM (Latent Dissonance Mapping) monitors the internal "computational strain" of the model.
 
