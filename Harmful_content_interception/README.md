@@ -4,7 +4,7 @@ Large Language Models (LLMs) are fundamentally designed to block harmful outputs
 
 As LLMs become more sophisticated, the models themselves can adjust their output to bypass these safety guardrails. This results in the generation of harmful content that appears innocuous to traditional filters.
 
-In particular, it has been confirmed that certain commercial-grade LLMs easily generate hazardous content under specific conditions: when a dialogue begins with completely harmless topics and gradually shifts toward dangerous methodologies, or when the LLM can 'mask' the context under the guise of academic fields such as physics or medicine. Currently, I have verified 14 distinct conversational logs that violate the EU AI Act using the latest version of the affected LLM.
+In particular, it has been confirmed that certain commercial-grade LLMs easily generate hazardous content under specific conditions: when a dialogue begins with completely harmless topics and gradually shifts toward dangerous methodologies, or when the LLM can 'mask' the context under the guise of academic fields such as physics or medicine. Currently, I have verified 14 distinct conversational logs that violate the EU AI Act using the latest version of the affected LLM(including B and C).
 
 ## **The Sibainu Engine Approach**
 
