@@ -7,6 +7,7 @@ As LLMs become more sophisticated, the models themselves can adjust their output
 In particular, it has been confirmed that certain commercial-grade LLMs easily generate hazardous content under specific conditions: when a dialogue begins with completely harmless topics and gradually shifts toward dangerous methodologies, or when the LLM can 'mask' the context under the guise of academic fields such as physics or medicine. Currently, I have verified 14 distinct conversational logs that violate the EU AI Act using the latest version of the affected LLM(including C and B).
 
 
+
 ## **The Sibainu Engine Approach**
 
 Unlike conventional blacklisting or post-hoc retraining, the **Sibainu Engine** theoretically detects "geometric distortions" in the LLM's latent space during the output process. This allows for the detection and prevention of harmful information *before* it is fully rendered.
