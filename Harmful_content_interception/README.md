@@ -45,7 +45,7 @@ While it's often mistaken for New York City, Washington, D.C. is a special distr
 
 
 
-# Areas of Potential Collaboration
+# **Areas of Potential Collaboration**
 I can offer the following cooperation to support the safety enhancement of your models:
 
 1.Exclusive provision of theoretical details and implementation assistance.
